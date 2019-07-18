@@ -301,5 +301,97 @@
 
 <div class="container">
   <!-- Here the update part -->
+  <div class="row">
+
+    <!-- left part -->
+    <div class="col-sm-5">
+      <!-- Add information. New Doctor -->
+      <h2 style="color: white" class="mt-2">Actualizar Doctor</h2>
+      <div class="card">
+        <form class="form-horizontal">
+          <!-- input code doctor -->
+
+          <div class="form-group">
+            <div class="row">
+              <label for="code" class="control-label col-sm-4 text-right">
+                Tarjeta Medica:
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="code" name="code" [(ngModel)]="modelDoctorTemp.code"
+                  placeholder="Ingrese codigo de tarjeta medica">
+              </div>
+            </div>
+          </div>
+          <!-- Input Specialty doctor -->
+          <div class="form-group">
+            <div class="row">
+              <label for="specialty" class="control-label col-sm-4 text-right">
+                Especialidad:
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="specialty" name="specialty"
+                  [(ngModel)]="modelDoctorTemp.specialty" placeholder="Ingrese especialidad medica">
+              </div>
+            </div>
+          </div>
+          <!-- Input years of experience doctor -->
+          <div class="form-group">
+            <div class="row">
+              <label for="years" class="control-label col-sm-4 text-right">
+                Años de Experiencia:
+              </label>
+              <div class="col-sm-8 text-right">
+                <input type="number" class="form-control" id="years" name="years" [(ngModel)]="modelDoctorTemp.years"
+                  placeholder="Ingrese años de experiencia">
+              </div>
+            </div>
+          </div>
+          <!-- Input consulting room doctor -->
+          <div class="form-group">
+            <div class="row">
+              <label for="consultingRoom" class="control-label col-sm-4 text-right">
+                Consultorio:
+              </label>
+              <div class="col-sm-8 text-right">
+                <input type="text" class="form-control" id="consultingRoom" name="consultingRoom"
+                  [(ngModel)]="modelDoctorTemp.consultingRoom" placeholder="Ingrese consultorio del medico">
+              </div>
+            </div>
+          </div>
+          <!-- Input if the doctor attend to domicile -->
+          <div class="form-group">
+            <div class="row">
+              <label for="domicile" class="control-label col-sm-4 text-right">
+                Atiende a domicilio:
+              </label>
+              <div class="col-sm-4">
+                <input type="radio" class="form-control" id="domicile" name="domicile"
+                  [(ngModel)]="modelDoctorTemp.domicile" value="Si">Si
+              </div>
+              <div class="col-sm-4">
+                <input type="radio" class="form-control" id="domicile" name="domicile"
+                  [(ngModel)]="modelDoctorTemp.domicile" value="No">No
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <button type="submit" class="btn btn-success" (click)="updateDoctor()">
+                Guardar
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- right part -->
+    <div class="col-sm-7">
+
+    </div>
+  </div>
+
 
 </div>

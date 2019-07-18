@@ -19,7 +19,9 @@ export class AppComponent {
 
   // Models to manage data
   modelDoctor:any={};
+  modelDoctorTemp:any={};
   modelPacient:any={};
+  modelPacientTemp:any={};
 
   // Function to add data
   addDoctor():void{
@@ -27,6 +29,7 @@ export class AppComponent {
 
   }
   addPacient():void{
+    this.pacientArray.push(this.modelPacient)
 
   }
 
@@ -39,7 +42,14 @@ export class AppComponent {
   } 
 
   // Functions to edit data
-  editDoctor():void{
+  index;
+  editDoctor(i):void{
+    this.modelDoctorTemp.code = this.doctorArray[i].code;
+    this.modelDoctorTemp.specialty = this.doctorArray[i].specialty;
+    this.modelDoctorTemp.years = this.doctorArray[i].years;
+    this.modelDoctorTemp.consultingRoom = this.doctorArray[i].consultingRoom;
+    this.modelDoctorTemp.domicile = this.doctorArray[i].domicile; 
+    this.index=i;
 
   }
  
@@ -49,11 +59,17 @@ export class AppComponent {
 
   // Function to update data
   updateDoctor():void{
-
+    let i= this.index;
+    for(let j=0;j<this.doctorArray.length;j++){
+      if(i==j){
+        this.doctorArray[i]=this.modelDoctorTemp;
+        this.modelDoctorTemp={};
+      }
+    }
   }
 
   updatePacient():void{
-
+    
   }
 
 
