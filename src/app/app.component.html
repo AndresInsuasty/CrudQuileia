@@ -33,12 +33,19 @@
 
           </thead>
           <tbody>
-            <tr *ngFor="let doctor of doctorArray, let i=index" class="text-center">
-              <td>{{doctor.code}}</td>
+            <!-- <tr *ngFor="let doctor of doctorArray, let i=index" class="text-center"> -->
+            <tr *ngFor="let doctor of DoctorRest, let i=index" class="text-center">
+              <!-- <td>{{doctor.name.first}}</td>
               <td>{{doctor.specialty}}</td>
               <td>{{doctor.years}}</td>
               <td>{{doctor.consultingRoom}}</td>
               <td>{{doctor.domicile}}</td>
+               -->
+               <td>{{doctor.name.first}}</td>
+              <td>{{doctor.name.last}}</td>
+              <td>{{doctor.email}}</td>
+              <td>{{doctor.location.city}}</td>
+              <td>{{doctor.location.postcode}}</td>
               <td>
                 <a (click)="editDoctor(i)" class="btn btn-success">
                   Editar
@@ -56,8 +63,8 @@
       <h2 style="color: white" class="mt-2">Agregar Doctor</h2>
       <div class="card">
         <form class="form-horizontal">
-          <!-- input code doctor -->
 
+          <!-- input code doctor -->
           <div class="form-group">
             <div class="row">
               <label for="code" class="control-label col-sm-4 text-right">
@@ -389,9 +396,12 @@
 
     <!-- right part -->
     <div class="col-sm-7">
+      <div *ngFor='let doctorrest of DoctorRest'>
 
+        <h2>{{doctorrest.code}}</h2>
+
+
+      </div>
     </div>
   </div>
-
-
 </div>
