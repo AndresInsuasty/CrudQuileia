@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/internal/Observable';
+import { DoctorModel } from '../models/doctor.models';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorService {
 
-  constructor(private http: HttpClient) { }
+  
+  apiurl='http://localhost:9090/Doctores';
+  
+  constructor(private _http: HttpClient) { }
 
   getDoctors(){
-    return this.http.get('https://randomuser.me/api/?results=5');
+    return this._http.get<DoctorModel[]>(this.apiurl)
+
   }
 
 }

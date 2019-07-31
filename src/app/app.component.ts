@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DoctorService } from './services/doctor.service';
+import { PacientService } from './services/pacient.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { DoctorModel } from './models/doctor.models';
+import { PacientModel } from './models/pacient.models';
 
 
 @Component({
@@ -8,45 +11,35 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  // doctorArray = [
-  //   { id: 1, code: 'ABC123', specialty: 'Pediatria', years: 4, consultingRoom: '1', domicile: false },
-  //   { id: 2, code: 'CI1', specialty: 'Cirugia', years: 1, consultingRoom: '1a', domicile: true },
-  //   { id: 3, code: 'CA9', specialty: 'Cardiologo', years: 9, consultingRoom: 'Z3', domicile: false }
-  // ];
-  // pacientArray = [
-  //   { id: 1, name: 'Andres', lastname: 'Insuasty', birthday: '10/10/1995', identification: '11111', doctorPacient: this.doctorArray[2].specialty, treatment: false, fee: 10, newDate: '20/07/2019' },
-  //   { id: 2, name: 'Cesar', lastname: 'Palacios', birthday: '30/02/1984', identification: '22222', doctorPacient: this.doctorArray[1].specialty, treatment: true, fee: 23, newDate: '21/07/2019' }
-  // ];
-
-  // Models to manage data
+export class AppComponent implements OnInit{
   modelDoctor: any = {};
   modelDoctorTemp: any = {};
   modelPacient: any = {};
   modelPacientTemp: any = {};
-  DoctorRest: any[]=[] ;
+  DoctorRest: any = [];
+  PacientRest: any[]=[];
+  Doctor$ : DoctorModel[];
+  Pacient$ : PacientModel[];
+  index;
 
   constructor(
-    protected DoctorService: DoctorService
+    protected DoctorService: DoctorService,
+    protected PacientService: PacientService,
+    private doctorService: DoctorService,
+    private pacientService: PacientService
   ) {
   }
 
   
   ngOnInit() {
-    this.DoctorService.getDoctors()
-      .subscribe(
-        (data) => {
-          this.DoctorRest = data['results'];
-          console.log('la lista es:'+this.DoctorRest);
-        },
-        (error) => {
-          console.error(error);
-
-        }
-      );
-
-
+    return this.doctorService.getDoctors()
+      .subscribe(data => this.Doctor$ = data),
+    this.pacientService.getPacients()
+      .subscribe(data => this.Pacient$ = data);
+             
   }
+
+
 
   
 
@@ -55,7 +48,7 @@ export class AppComponent {
   // Function to add data
   addDoctor(): void {
     // this.doctorArray.push(this.modelDoctor)
-    this.DoctorRest.push(this.modelDoctor)
+    this.Doctor$.push(this.modelDoctor)
 
   }
   addPacient(): void {
@@ -64,7 +57,12 @@ export class AppComponent {
   }
 
   // functions to delete data
-  deleteDoctor(): void {
+  deleteDoctor(i): void {
+    var answer = confirm('Esta seguro de eliminar?')
+    if(answer){
+      this.Doctor$.splice(i,1)
+    }
+    
 
   }
   deletePacient(): void {
@@ -72,19 +70,13 @@ export class AppComponent {
   }
 
   // Functions to edit data
-  index;
+
   editDoctor(i): void {
-    // this.modelDoctorTemp.code = this.doctorArray[i].code;
-    // this.modelDoctorTemp.specialty = this.doctorArray[i].specialty;
-    // this.modelDoctorTemp.years = this.doctorArray[i].years;
-    // this.modelDoctorTemp.consultingRoom = this.doctorArray[i].consultingRoom;
-    // this.modelDoctorTemp.domicile = this.doctorArray[i].domicile;
-    // this.index = i;
-    this.modelDoctorTemp.code = this.DoctorRest[i].code;
-    this.modelDoctorTemp.specialty = this.DoctorRest[i].specialty;
-    this.modelDoctorTemp.years = this.DoctorRest[i].years;
-    this.modelDoctorTemp.consultingRoom = this.DoctorRest[i].consultingRoom;
-    this.modelDoctorTemp.domicile = this.DoctorRest[i].domicile;
+    this.modelDoctorTemp.code = this.Doctor$[i].code;
+    this.modelDoctorTemp.specialty = this.Doctor$[i].specialty;
+    this.modelDoctorTemp.years = this.Doctor$[i].years;
+    // this.modelDoctorTemp.consultingRoom = this.Doctor$[i].consultingRoom;
+    this.modelDoctorTemp.domicile = this.Doctor$[i].domicile;
     this.index = i;
 
   }
@@ -95,17 +87,10 @@ export class AppComponent {
 
   // Function to update data
   updateDoctor(): void {
-    // let i = this.index;
-    // for (let j = 0; j < this.doctorArray.length; j++) {
-    //   if (i == j) {
-    //     this.doctorArray[i] = this.modelDoctorTemp;
-    //     this.modelDoctorTemp = {};
-    //   }
-    // }
     let i = this.index;
-    for (let j = 0; j < this.DoctorRest.length; j++) {
+    for (let j = 0; j < this.Doctor$.length; j++) {
       if (i == j) {
-        this.DoctorRest[i] = this.modelDoctorTemp;
+        this.Doctor$[i] = this.modelDoctorTemp;
         this.modelDoctorTemp = {};
       }
     }

@@ -34,18 +34,12 @@
           </thead>
           <tbody>
             <!-- <tr *ngFor="let doctor of doctorArray, let i=index" class="text-center"> -->
-            <tr *ngFor="let doctor of DoctorRest, let i=index" class="text-center">
-              <!-- <td>{{doctor.name.first}}</td>
+            <tr *ngFor="let doctor of Doctor$" class="text-center">
+              <td>{{doctor.code}}</td>
               <td>{{doctor.specialty}}</td>
               <td>{{doctor.years}}</td>
               <td>{{doctor.consultingRoom}}</td>
               <td>{{doctor.domicile}}</td>
-               -->
-               <td>{{doctor.name.first}}</td>
-              <td>{{doctor.name.last}}</td>
-              <td>{{doctor.email}}</td>
-              <td>{{doctor.location.city}}</td>
-              <td>{{doctor.location.postcode}}</td>
               <td>
                 <a (click)="editDoctor(i)" class="btn btn-success">
                   Editar
@@ -163,15 +157,16 @@
 
           </thead>
           <tbody>
-            <tr *ngFor="let pacient of pacientArray, let i=index" class="text-center">
+            <tr *ngFor="let pacient of Pacient$, let i=index" class="text-center">
               <td>{{pacient.name}}</td>
-              <td>{{pacient.lastname}}</td>
+              <td>{{pacient.lastName}}</td>
               <td>{{pacient.birthday}}</td>
               <td>{{pacient.identification}}</td>
-              <td>{{pacient.doctorPacient}}</td>
+              <td>{{pacient.doctorsList}}</td>
               <td>{{pacient.treatment}}</td>
               <td>{{pacient.fee}}</td>
               <td>{{pacient.newDate}}</td>
+              
               <td>
                 <a (click)="editPacient(i)" class="btn btn-success">
                   Editar
