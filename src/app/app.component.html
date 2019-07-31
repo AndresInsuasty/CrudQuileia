@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             <!-- <tr *ngFor="let doctor of doctorArray, let i=index" class="text-center"> -->
-            <tr *ngFor="let doctor of Doctor$" class="text-center">
+            <tr *ngFor="let doctor of Doctor$, let i=index" class="text-center">
               <td>{{doctor.code}}</td>
               <td>{{doctor.specialty}}</td>
               <td>{{doctor.years}}</td>

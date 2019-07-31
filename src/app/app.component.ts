@@ -75,7 +75,7 @@ export class AppComponent implements OnInit{
     this.modelDoctorTemp.code = this.Doctor$[i].code;
     this.modelDoctorTemp.specialty = this.Doctor$[i].specialty;
     this.modelDoctorTemp.years = this.Doctor$[i].years;
-    // this.modelDoctorTemp.consultingRoom = this.Doctor$[i].consultingRoom;
+    this.modelDoctorTemp.consultingRoom = this.Doctor$[i].consultingroom;
     this.modelDoctorTemp.domicile = this.Doctor$[i].domicile;
     this.index = i;
 
