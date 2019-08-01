@@ -14,4 +14,11 @@ export class PacientService {
     return this._http.get<PacientModel[]>(this.apiurl)
   }
 
+  postPacients(model:any){
+    return this._http.post(this.apiurl,model)
+  }
+  deletePacients(id) {
+    return this._http.delete(this.apiurl.concat("/",id))
+  }
+
 }

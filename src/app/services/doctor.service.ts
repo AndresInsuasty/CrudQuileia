@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { DoctorModel } from '../models/doctor.models';
 
 @Injectable({
@@ -7,14 +7,23 @@ import { DoctorModel } from '../models/doctor.models';
 })
 export class DoctorService {
 
-  
-  apiurl='http://localhost:9090/Doctores';
-  
+
+  apiurl = 'http://127.0.0.1:9090/Doctores';
+  //apiurl='https://my-json-server.typicode.com/typicode/demo/posts';
+
   constructor(private _http: HttpClient) { }
 
-  getDoctors(){
+  getDoctors() {
     return this._http.get<DoctorModel[]>(this.apiurl)
 
+  }
+
+  postDoctors(model: any) {
+    return this._http.post(this.apiurl, model)
+  }
+
+  deleteDoctors(id) {
+    return this._http.delete(this.apiurl.concat("/",id))
   }
 
 }

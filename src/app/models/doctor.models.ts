@@ -3,6 +3,6 @@ export class DoctorModel{
     code: string;
     specialty: string;
     years: number;
-    consultingroom: string;
+    consultingRoom: string;
     domicile: string;
 }
