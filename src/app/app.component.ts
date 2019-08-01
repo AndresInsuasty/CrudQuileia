@@ -77,11 +77,11 @@ export class AppComponent implements OnInit {
     var answer = confirm('Esta seguro de eliminar?')
     if (answer) {
       this.DoctorService.deleteDoctors(this.Doctor$[i].id)
-      .subscribe((status) => {
-        this.postStatus = status,
-          console.log("hecho!");
-      }
-      )
+        .subscribe((status) => {
+          this.postStatus = status,
+            console.log("hecho!");
+        }
+        )
       this.Doctor$.splice(i, 1)
     }
 
@@ -91,11 +91,11 @@ export class AppComponent implements OnInit {
     var answer = confirm('Esta seguro de eliminar?')
     if (answer) {
       this.PacientService.deletePacients(this.Pacient$[i].id)
-      .subscribe((status) => {
-        this.postStatus = status,
-          console.log("hecho!");
-      }
-      )
+        .subscribe((status) => {
+          this.postStatus = status,
+            console.log("hecho!");
+        }
+        )
       this.Pacient$.splice(i, 1)
     }
 
@@ -117,6 +117,7 @@ export class AppComponent implements OnInit {
   }
 
   editPacient(i): void {
+    this.modelPacientTemp.id = this.Pacient$[i].id;
     this.modelPacientTemp.name = this.Pacient$[i].name;
     this.modelPacientTemp.lastName = this.Pacient$[i].lastName;
     this.modelPacientTemp.birthday = this.Pacient$[i].birthday;
@@ -124,7 +125,7 @@ export class AppComponent implements OnInit {
     this.modelPacientTemp.identification = this.Pacient$[i].identification;
     this.modelPacientTemp.fee = this.Pacient$[i].fee;
     this.modelPacientTemp.newDate = this.Pacient$[i].newDate;
-    this.modelPacientTemp.doctorList = this.Pacient$[i].doctorsList;
+    this.modelPacientTemp.doctorList = this.Pacient$[i].doctorList;
     this.index = i;
 
   }
@@ -136,11 +137,32 @@ export class AppComponent implements OnInit {
       if (i == j) {
         this.Doctor$[i] = this.modelDoctorTemp;
         this.modelDoctorTemp = {};
+        console.log(this.Doctor$[i]);
+        this.DoctorService.putDoctors(this.Doctor$[i])
+          .subscribe((status) => {
+            this.postStatus = status,
+              console.log("hecho!");
+          }
+          )
       }
     }
   }
 
   updatePacient(): void {
+    let i = this.index;
+    for (let j = 0; j < this.Pacient$.length; j++) {
+      if (i == j) {
+        this.Pacient$[i] = this.modelPacientTemp;
+        this.modelPacientTemp = {};
+        console.log(this.Pacient$[i]);
+        this.PacientService.putPacients(this.Pacient$[i])
+          .subscribe((status) => {
+            this.postStatus = status,
+              console.log("hecho!");
+          }
+          )
+      }
+    }
 
   }
 

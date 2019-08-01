@@ -26,4 +26,8 @@ export class DoctorService {
     return this._http.delete(this.apiurl.concat("/",id))
   }
 
+  putDoctors(model:any) {
+    return this._http.put(this.apiurl,model)
+  }
+
 }

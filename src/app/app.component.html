@@ -166,7 +166,7 @@
               <td>{{pacient.lastName}}</td>
               <td>{{pacient.birthday}}</td>
               <td>{{pacient.identification}}</td>
-              <td>{{pacient.doctorsList}}</td>
+              <td>{{pacient.doctorList}}</td>
               <td>{{pacient.treatment}}</td>
               <td>{{pacient.fee}}</td>
               <td>{{pacient.newDate}}</td>
@@ -247,7 +247,7 @@
             <div class="col-sm-8">
               <select type="string" class="form-control" id="doctorList" name="doctorList"
                 [(ngModel)]="modelPacient.doctorList" placeholder="Ingrese doctor asignado">
-                <option *ngFor="let doctor of Doctor$" value={{doctor.id}}>{{doctor.code}} {{doctor.specialty}}</option>
+                <option *ngFor="let doctor of Doctor$">{{doctor.code}} {{doctor.specialty}}</option>
               </select>
             </div>
           </div>
@@ -260,11 +260,11 @@
               Esta en tratamiento:
             </label>
             <div class="col-sm-4">
-              <input type="radio" class="form-control" id="treatment" name="treatment"
+              <input type="radio" class="form-control" id="treatment1" name="treatment1"
                 [(ngModel)]="modelPacient.treatment" value="1">Si
             </div>
             <div class="col-sm-4">
-              <input type="radio" class="form-control" id="treatment" name="treatment"
+              <input type="radio" class="form-control" id="treatment1" name="treatment1"
                 [(ngModel)]="modelPacient.treatment" value="0">No
             </div>
           </div>
@@ -461,7 +461,7 @@
             <div class="col-sm-8">
               <select type="string" class="form-control" id="doctorList" name="doctorList"
                 [(ngModel)]="modelPacientTemp.doctorList" placeholder="Ingrese doctor asignado">
-                <option *ngFor="let doctor of Doctor$" value={{doctor.id}}>{{doctor.code}} {{doctor.specialty}}</option>
+                <option *ngFor="let doctor of Doctor$" value="{{doctor.code}}">{{doctor.code}} {{doctor.specialty}}</option>
               </select>
             </div>
           </div>
@@ -511,7 +511,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-10 col-sm-offset-2">
-            <button type="submit" class="btn btn-success" (click)="addPacient()">
+            <button type="submit" class="btn btn-success" (click)="updatePacient()">
               Guardar
             </button>
           </div>

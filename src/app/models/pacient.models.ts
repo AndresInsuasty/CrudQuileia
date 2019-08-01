@@ -7,5 +7,5 @@ export class PacientModel{
     treatment: number;
     fee: number;
     newDate: string;
-    doctorsList: string;
+    doctorList: string;
 }
