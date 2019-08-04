@@ -12,10 +12,16 @@ import { AppComponent } from './app.component';
 import { DoctorService } from './services/doctor.service';
 import { PacientService } from './services/pacient.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaDoctoresComponent } from './components/lista-doctores/lista-doctores.component';
+import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import { CitasComponent } from './components/citas/citas.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListaDoctoresComponent,
+    ListaPacientesComponent,
+    CitasComponent
   ],
   imports: [
     BrowserModule,
