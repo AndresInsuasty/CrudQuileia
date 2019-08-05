@@ -9,8 +9,6 @@ export class DoctorService {
 
 
   apiurl = 'http://127.0.0.1:9090/Doctores';
-  //apiurl='https://my-json-server.typicode.com/typicode/demo/posts';
-
   constructor(private _http: HttpClient) { }
 
   getDoctors() {
@@ -23,11 +21,11 @@ export class DoctorService {
   }
 
   deleteDoctors(id) {
-    return this._http.delete(this.apiurl.concat("/",id))
+    return this._http.delete(this.apiurl.concat("/", id))
   }
 
-  putDoctors(model:any) {
-    return this._http.put(this.apiurl,model)
+  putDoctors(model: any) {
+    return this._http.put(this.apiurl, model)
   }
 
 }

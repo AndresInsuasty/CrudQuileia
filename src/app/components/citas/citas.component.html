@@ -1,3 +1,114 @@
-<p><span style="color: #00ff00;"><img style="display: block; margin-left: auto; margin-right: auto;"
+<!-- <p><span style="color: #00ff00;"><img style="display: block; margin-left: auto; margin-right: auto;"
             src="http://s3.amazonaws.com/snd-store/a/26553114/02_02_18_508408464_aab_560x292.jpg"
-            alt="Working in progress" width="560" height="292" /></span></p>
+            alt="Working in progress" width="560" height="292" /></span></p> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 style="color: white">Citas</h2>
+            <!-- table to list Citas -->
+            <div class="table-responsive">
+                <table class="table table-hover table-sm table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th>Paciente</th>
+                            <th>Doctor</th>
+                            <th>Fecha Cita</th>
+                            <th>Hora Cita</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let citas of Citas$, let i=index" class="text-center">
+                            <td>{{citas.id}}</td>
+                            <td>{{citas.pacient_ID}}</td>
+                            <td>{{citas.doctor_ID}}</td>
+                            <td>{{citas.newDate}}</td>
+                            <td>{{citas.time}}</td>
+                            <td>
+                                <a (click)="editDoctor(i)" class="btn btn-success">
+                                    Editar
+                                </a>
+                                <a (click)="deleteCitas(i)" class="btn btn-danger">
+                                    Borrar
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Add a new cita -->
+    <h2 style="color: white" class="mt-2">Agregar Cita</h2>
+    <div class="card">
+        <form class="form-horizontal">
+
+            <!-- input Pacient -->
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label col-sm-4 text-right">
+                        Paciente:
+                    </label>
+                    <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" id="code" name="code" [(ngModel)]="modelDoctor.code"
+                            placeholder="Ingrese codigo de tarjeta medica"> -->
+                        <select class="form-control" id="pacient_ID" name="pacient_ID" [(ngModel)]="modelCitas.pacient_ID">
+                            <option *ngFor="let pacient of Pacient$" value={{pacient.id}}>{{pacient.name}} 
+                                {{pacient.lastName}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Input Doctor -->
+                <div class="row">
+                    <label class="control-label col-sm-4 text-right">
+                        Doctor:
+                    </label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="doctor_ID" name="doctor_ID" [(ngModel)]="modelCitas.doctor_ID">
+                            <option *ngFor="let doctor of Doctor$" value={{doctor.id}}>{{doctor.code}}
+                                {{doctor.specialty}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Input newDate -->
+                <div class="row">
+                    <label class="control-label col-sm-4 text-right">
+                        Fecha de la nueva cita:
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="newDate" name="newDate" [(ngModel)]="modelCitas.newDate">
+                    </div>
+                </div>
+
+
+                <!-- Input timeDate -->
+                <div class="row">
+                    <label class="control-label col-sm-4 text-right">
+                        Hora de la cita:
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="time" class="form-control" id="time" name="time" [(ngModel)]="modelCitas.time">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-success" (click)="addCita()">
+                        Guardar
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
