@@ -1,288 +1,236 @@
 <div class="col-md-12">
-        <h2 style="color: white">Lista Pacientes</h2>
-        <!-- table to list pacients -->
-        <div class="table-responsive">
-          <table class="table table-hover table-sm table-dark">
-            <thead>
-              <tr class="text-center">
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>fecha de nacimiento</th>
-                <th>Identificación</th>
-                <th>Doctor</th>
-                <th>Tratamiento</th>
-                <th>Cuota</th>
-                <th>Cita</th>
-                <th>Acción</th>
-  
-              </tr>
-  
-            </thead>
-            <tbody>
-              <tr *ngFor="let pacient of Pacient$, let i=index" class="text-center">
-                <td>{{pacient.id}}</td>
-                <td>{{pacient.name}}</td>
-                <td>{{pacient.lastName}}</td>
-                <td>{{pacient.birthday}}</td>
-                <td>{{pacient.identification}}</td>
-                <td>{{pacient.doctorList}}</td>
-                <td>{{pacient.treatment}}</td>
-                <td>{{pacient.fee}}</td>
-                <td>{{pacient.newDate}}</td>
-  
-                <td>
-                  <a (click)="editPacient(i)" class="btn btn-success">
-                    Editar
-                  </a>
-                  <a (click)="deletePacient(i)" class="btn btn-danger">
-                    Borrar
-                  </a>
-                </td>
-              </tr>
-  
-            </tbody>
-          </table>
-        </div>
-        <h2 style="color: white" class="mt-2">Agregar Pacientes</h2>
-        <div class="card">
-          <form class="form-horizontal">
-            <!-- input name pacient -->
-            <div class="form-group">
-              <div class="row">
-                <label for="name" class="control-label col-sm-4 text-right">
-                  Nombre:
-                </label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="modelPacient.name"
-                    placeholder="Ingrese Nombre del paciente">
-                </div>
-              </div>
-            </div>
-          </form>
-          <!-- input lastname pacient -->
-          <div class="form-group">
-            <div class="row">
-              <label for="lastname" class="control-label col-sm-4 text-right">
-                Apellido:
-              </label>
-              <div class="col-sm-8">
-                <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="modelPacient.lastName"
-                  placeholder="Ingrese Apellido del paciente">
-              </div>
-            </div>
-          </div>
-  
-          <!-- Input birthday pacient-->
-          <div class="form-group">
-            <div class="row">
-              <label for="birthday" class="control-label col-sm-4 text-right">
-                Fecha de nacimiento:
-              </label>
-              <div class="col-sm-8">
-                <input type="date" class="form-control" id="birthday" name="birthday" [(ngModel)]="modelPacient.birthday"
-                  placeholder="Ingrese fecha de nacimiento">
-              </div>
-            </div>
-          </div>
-  
-          <!-- Input identification pacient -->
-          <div class="form-group">
-            <div class="row">
-              <label for="identification" class="control-label col-sm-4 text-right">
-                Identificación:
-              </label>
-              <div class="col-sm-8">
-                <input type="string" class="form-control" id="identification" name="identification"
-                  [(ngModel)]="modelPacient.identification" placeholder="Ingrese Identificación">
-              </div>
-            </div>
-          </div>
-          <!-- Input Doctor of pacient -->
-          <div class="form-group">
-            <div class="row">
-              <label for="doctorList" class="control-label col-sm-4 text-right">
-                Doctor asignado:
-              </label>
-              <div class="col-sm-8">
-                <select type="string" class="form-control" id="doctorList" name="doctorList"
-                  [(ngModel)]="modelPacient.doctorList" placeholder="Ingrese doctor asignado">
-                  <option *ngFor="let doctor of Doctor$">{{doctor.code}} {{doctor.specialty}}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-  
-          <!-- input if the pacient has treatment -->
-          <div class="form-group">
-            <div class="row">
-              <label for="treatment" class="control-label col-sm-4 text-right">
-                Esta en tratamiento:
-              </label>
-              <div class="col-sm-4">
-                <input type="radio" class="form-control" id="treatment1" name="treatment1"
-                  [(ngModel)]="modelPacient.treatment" value="1">Si
-              </div>
-              <div class="col-sm-4">
-                <input type="radio" class="form-control" id="treatment1" name="treatment1"
-                  [(ngModel)]="modelPacient.treatment" value="0">No
-              </div>
-            </div>
-          </div>
-  
-          <!-- Input fee pacient -->
-          <div class="form-group">
-            <div class="row">
-              <label for="fee" class="control-label col-sm-4 text-right">
-                Valor Cuota:
-              </label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="fee" name="fee" [(ngModel)]="modelPacient.fee"
-                  placeholder="Ingrese valor de la cuota">
-              </div>
-            </div>
-          </div>
-  
-          <!-- Input New date pacient -->
-          <div class="form-group">
-            <div class="row">
-              <label for="newDate" class="control-label col-sm-4 text-right">
-                Nueva Cita:
-              </label>
-              <div class="col-sm-8">
-                <input type="date" class="form-control" id="newDate" name="newDate" [(ngModel)]="modelPacient.newDate">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-              <button type="submit" class="btn btn-success" (click)="addPacient()">
-                Guardar
-              </button>
-            </div>
-  
+  <h2 style="color: white">Lista Pacientes</h2>
+  <!-- table to list pacients -->
+  <div class="table-responsive">
+    <table class="table table-hover table-sm table-dark">
+      <thead>
+        <tr class="text-center">
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>fecha de nacimiento</th>
+          <th>Identificación</th>
+          <th>Tratamiento</th>
+          <th>Cuota</th>
+          <th>Acción</th>
+
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let pacient of Pacient$, let i=index" class="text-center">
+          <td>{{pacient.id}}</td>
+          <td>{{pacient.name}}</td>
+          <td>{{pacient.lastName}}</td>
+          <td>{{pacient.birthday}}</td>
+          <td>{{pacient.identification}}</td>
+          <td>{{pacient.treatment}}</td>
+          <td>{{pacient.fee}}</td>
+
+          <td>
+            <a (click)="editPacient(i)" class="btn btn-success">
+              Editar
+            </a>
+            <a (click)="deletePacient(i)" class="btn btn-danger">
+              Borrar
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Add information. New Pacient -->
+  <h2 style="color: white" class="mt-2">Actualizar Paciente</h2>
+  <div class="card">
+    <form class="form-horizontal">
+      <!-- input name pacient -->
+      <div class="form-group">
+        <div class="row">
+          <label for="name" class="control-label col-sm-4 text-right">
+            Nombre:
+          </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="modelPacientTemp.name"
+              placeholder="Ingrese Nombre del paciente">
           </div>
         </div>
       </div>
-
-      <!-- Add information. New Pacient -->
-      <h2 style="color: white" class="mt-2">Actualizar Paciente</h2>
-      <div class="card">
-        <form class="form-horizontal">
-          <!-- input name pacient -->
-          <div class="form-group">
-            <div class="row">
-              <label for="name" class="control-label col-sm-4 text-right">
-                Nombre:
-              </label>
-              <div class="col-sm-8">
-                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="modelPacientTemp.name"
-                  placeholder="Ingrese Nombre del paciente">
-              </div>
-            </div>
-          </div>
-        </form>
-        <!-- input lastname pacient -->
-        <div class="form-group">
-          <div class="row">
-            <label for="lastname" class="control-label col-sm-4 text-right">
-              Apellido:
-            </label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="lastname" name="lastname"
-                [(ngModel)]="modelPacientTemp.lastName" placeholder="Ingrese Apellido del paciente">
-            </div>
-          </div>
-        </div>
-
-        <!-- Input birthday pacient-->
-        <div class="form-group">
-          <div class="row">
-            <label for="birthday" class="control-label col-sm-4 text-right">
-              Fecha de nacimiento:
-            </label>
-            <div class="col-sm-8">
-              <input type="date" class="form-control" id="birthday" name="birthday"
-                [(ngModel)]="modelPacientTemp.birthday" placeholder="Ingrese fecha de nacimiento">
-            </div>
-          </div>
-        </div>
-
-        <!-- Input identification pacient -->
-        <div class="form-group">
-          <div class="row">
-            <label for="identification" class="control-label col-sm-4 text-right">
-              Identificación:
-            </label>
-            <div class="col-sm-8">
-              <input type="string" class="form-control" id="identification" name="identification"
-                [(ngModel)]="modelPacientTemp.identification" placeholder="Ingrese Identificación">
-            </div>
-          </div>
-        </div>
-        <!-- Input Doctor of pacient -->
-        <div class="form-group">
-          <div class="row">
-            <label for="doctorList" class="control-label col-sm-4 text-right">
-              Doctor asignado:
-            </label>
-            <div class="col-sm-8">
-              <select type="string" class="form-control" id="doctorList" name="doctorList"
-                [(ngModel)]="modelPacientTemp.doctorList" placeholder="Ingrese doctor asignado">
-                <option *ngFor="let doctor of Doctor$" value="{{doctor.code}}">{{doctor.code}} {{doctor.specialty}}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- input if the pacient has treatment -->
-        <div class="form-group">
-          <div class="row">
-            <label for="treatment" class="control-label col-sm-4 text-right">
-              Esta en tratamiento:
-            </label>
-            <div class="col-sm-4">
-              <input type="radio" class="form-control" id="treatment" name="treatment"
-                [(ngModel)]="modelPacientTemp.treatment" value="1">Si
-            </div>
-            <div class="col-sm-4">
-              <input type="radio" class="form-control" id="treatment" name="treatment"
-                [(ngModel)]="modelPacientTemp.treatment" value="0">No
-            </div>
-          </div>
-        </div>
-
-        <!-- Input fee pacient -->
-        <div class="form-group">
-          <div class="row">
-            <label for="fee" class="control-label col-sm-4 text-right">
-              Valor Cuota:
-            </label>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" id="fee" name="fee" [(ngModel)]="modelPacientTemp.fee"
-                placeholder="Ingrese valor de la cuota">
-            </div>
-          </div>
-        </div>
-
-        <!-- Input New date pacient -->
-        <div class="form-group">
-          <div class="row">
-            <label for="newDate" class="control-label col-sm-4 text-right">
-              Nueva Cita:
-            </label>
-            <div class="col-sm-8">
-              <input type="date" class="form-control" id="newDate" name="newDate"
-                [(ngModel)]="modelPacientTemp.newDate">
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-10 col-sm-offset-2">
-            <button type="submit" class="btn btn-success" (click)="updatePacient()">
-              Guardar
-            </button>
-          </div>
-
+    </form>
+    <!-- input lastname pacient -->
+    <div class="form-group">
+      <div class="row">
+        <label for="lastname" class="control-label col-sm-4 text-right">
+          Apellido:
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="modelPacientTemp.lastName"
+            placeholder="Ingrese Apellido del paciente">
         </div>
       </div>
+    </div>
+
+    <!-- Input birthday pacient-->
+    <div class="form-group">
+      <div class="row">
+        <label for="birthday" class="control-label col-sm-4 text-right">
+          Fecha de nacimiento:
+        </label>
+        <div class="col-sm-8">
+          <input type="date" class="form-control" id="birthday" name="birthday" [(ngModel)]="modelPacientTemp.birthday"
+            placeholder="Ingrese fecha de nacimiento">
+        </div>
+      </div>
+    </div>
+
+    <!-- Input identification pacient -->
+    <div class="form-group">
+      <div class="row">
+        <label for="identification" class="control-label col-sm-4 text-right">
+          Identificación:
+        </label>
+        <div class="col-sm-8">
+          <input type="string" class="form-control" id="identification" name="identification"
+            [(ngModel)]="modelPacientTemp.identification" placeholder="Ingrese Identificación">
+        </div>
+      </div>
+    </div>
+
+    <!-- input if the pacient has treatment -->
+    <div class="form-group">
+      <div class="row">
+        <label for="treatment" class="control-label col-sm-4 text-right">
+          Esta en tratamiento:
+        </label>
+        <div class="col-sm-4">
+          <input type="radio" class="form-control" id="treatmentUpdate" name="treatmentUpdate"
+            [(ngModel)]="modelPacientTemp.treatment" value="1">Si
+        </div>
+        <div class="col-sm-4">
+          <input type="radio" class="form-control" id="treatmentUpdate" name="treatmentUpdate"
+            [(ngModel)]="modelPacientTemp.treatment" value="0">No
+        </div>
+      </div>
+    </div>
+
+    <!-- Input fee pacient -->
+    <div class="form-group">
+      <div class="row">
+        <label for="fee" class="control-label col-sm-4 text-right">
+          Valor Cuota:
+        </label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" id="fee" name="fee" [(ngModel)]="modelPacientTemp.fee"
+            placeholder="Ingrese valor de la cuota">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <button type="submit" class="btn btn-success" (click)="updatePacient()">
+          Guardar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <h2 style="color: white" class="mt-2">Agregar Pacientes</h2>
+  <div class="card">
+    <form class="form-horizontal">
+      <!-- input name pacient -->
+      <div class="form-group">
+        <div class="row">
+          <label for="name" class="control-label col-sm-4 text-right">
+            Nombre:
+          </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="modelPacient.name"
+              placeholder="Ingrese Nombre del paciente">
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- input lastname pacient -->
+    <div class="form-group">
+      <div class="row">
+        <label for="lastname" class="control-label col-sm-4 text-right">
+          Apellido:
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="modelPacient.lastName"
+            placeholder="Ingrese Apellido del paciente">
+        </div>
+      </div>
+    </div>
+
+    <!-- Input birthday pacient-->
+    <div class="form-group">
+      <div class="row">
+        <label for="birthday" class="control-label col-sm-4 text-right">
+          Fecha de nacimiento:
+        </label>
+        <div class="col-sm-8">
+          <input type="date" class="form-control" id="birthday" name="birthday" [(ngModel)]="modelPacient.birthday"
+            placeholder="Ingrese fecha de nacimiento">
+        </div>
+      </div>
+    </div>
+
+    <!-- Input identification pacient -->
+    <div class="form-group">
+      <div class="row">
+        <label for="identification" class="control-label col-sm-4 text-right">
+          Identificación:
+        </label>
+        <div class="col-sm-8">
+          <input type="string" class="form-control" id="identification" name="identification"
+            [(ngModel)]="modelPacient.identification" placeholder="Ingrese Identificación">
+        </div>
+      </div>
+    </div>
+
+    <!-- input if the pacient has treatment -->
+    <div class="form-group">
+      <div class="row">
+        <label for="treatment" class="control-label col-sm-4 text-right">
+          Esta en tratamiento:
+        </label>
+        <div class="col-sm-4">
+          <input type="radio" class="form-control" id="treatment1" name="treatment1"
+            [(ngModel)]="modelPacient.treatment" value="1">Si
+        </div>
+        <div class="col-sm-4">
+          <input type="radio" class="form-control" id="treatment1" name="treatment1"
+            [(ngModel)]="modelPacient.treatment" value="0">No
+        </div>
+      </div>
+    </div>
+
+    <!-- Input fee pacient -->
+    <div class="form-group">
+      <div class="row">
+        <label for="fee" class="control-label col-sm-4 text-right">
+          Valor Cuota:
+        </label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" id="fee" name="fee" [(ngModel)]="modelPacient.fee"
+            placeholder="Ingrese valor de la cuota">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <button type="submit" class="btn btn-success" (click)="addPacient()">
+          Guardar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

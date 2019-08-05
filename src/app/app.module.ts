@@ -15,13 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListaDoctoresComponent } from './components/lista-doctores/lista-doctores.component';
 import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
 import { CitasComponent } from './components/citas/citas.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaDoctoresComponent,
     ListaPacientesComponent,
-    CitasComponent
+    CitasComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
