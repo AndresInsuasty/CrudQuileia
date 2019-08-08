@@ -54,8 +54,7 @@ export class CitasComponent implements OnInit {
     console.log(this.modelCitas)
     this.citasService.postCitas(this.modelCitas)
       .subscribe((status) => {
-        this.postStatus = status,
-          console.log("hecho!");
+        this.postStatus = status, console.log("hecho!");
       }
       )
     this.Citas$.push(this.modelCitas)
