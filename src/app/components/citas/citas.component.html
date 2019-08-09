@@ -57,7 +57,7 @@
                     <div class="col-sm-8">
                         <!-- <input type="text" class="form-control" id="code" name="code" [(ngModel)]="modelDoctor.code"
                             placeholder="Ingrese codigo de tarjeta medica"> -->
-                        <select class="form-control" id="pacient_ID" name="pacient_ID" [(ngModel)]="modelCitas.pacient_ID">
+                        <select class="form-control" id="pacient_ID" name="pacient_ID" [(ngModel)]="modelCitas.pacientId">
                             <option *ngFor="let pacient of Pacient$" value={{pacient.id}}>{{pacient.name}} 
                                 {{pacient.lastName}}</option>
                         </select>
@@ -71,7 +71,7 @@
                         Doctor:
                     </label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="doctor_ID" name="doctor_ID" [(ngModel)]="modelCitas.doctor_ID">
+                        <select class="form-control" id="doctor_ID" name="doctor_ID" [(ngModel)]="modelCitas.doctorId">
                             <option *ngFor="let doctor of Doctor$" value={{doctor.id}}>{{doctor.code}}
                                 {{doctor.specialty}}</option>
                         </select>

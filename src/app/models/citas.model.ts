@@ -1,7 +1,7 @@
 export class CitasModel{
     id: number;
     time: string;
-    pacient_ID: number;
+    pacientId: number;
     newDate: string;
-    doctor_ID: number;
+    doctorId: number;
 }
